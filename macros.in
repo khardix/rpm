@@ -1241,8 +1241,8 @@ Supplements:   (%{name} = %{version}-%{release} and langpacks-%{1})\
 # Git
 %__scm_setup_git(q)\
 %{__git} init %{-q}\
-%{__git} config user.name "%{__scm_username}"\
-%{__git} config user.email "%{__scm_usermail}"\
+%{__git} config --get user.name >/dev/null || %{__git} config user.name "%{__scm_username}"\
+%{__git} config --get user.email >/dev/null || %{__git} config user.email "%{__scm_usermail}"\
 %{__git} config gc.auto 0\
 %{__git} add --force .\
 GIT_COMMITTER_DATE=%{__scm_source_timestamp} GIT_AUTHOR_DATE=%{__scm_source_timestamp}\\\
